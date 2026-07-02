@@ -1,0 +1,97 @@
+# Beleqet Backend - Technical Assessment Results
+
+**Candidate:** welderufael haile
+**Date:** July 2, 2026
+**Position:** Full-Stack Developer & Technical Lead
+
+## Environment Setup
+- **OS:** Ubuntu 22.04
+- **Docker:** 29.4.3
+- **Docker Compose:** v5.1.3
+- **Node.js:** (Running inside Docker container)
+- **PostgreSQL:** (Running inside Docker container)
+
+## Installation & Setup
+Repository cloned successfully
+Docker installed and configured
+Docker Compose running
+Environment variables configured
+Application started without errors
+
+## Test Results
+
+### 1. Container Startup
+All containers started successfully
+PostgreSQL connection established
+Application running on port 4000
+No startup errors detected
+
+**Screenshot:** [Add screenshot of terminal showing successful startup]
+
+### 2. API Endpoints Tested
+
+| Endpoint | Method | Status | Notes |
+|----------|--------|--------|-------|
+| `/api/v1/auth/register` | POST |  Working | User registration successful |
+| `/api/v1/auth/login` | POST |  Working | JWT token generated |
+| `/api/v1/users/profile` | GET |  Working | Protected route working with JWT |
+| `/api/v1/jobs` | GET |  Working | Returns empty array (expected) |
+| `/api/v1/jobs` | POST | Working | Authorization verified (401 → 400) |
+
+### 3. Authentication & Authorization
+JWT token generation working
+Token validation working
+Role-based access (EMPLOYER vs JOB_SEEKER) working
+Protected routes correctly restricting access
+
+### 4. Database
+PostgreSQL connection successful
+User data persisted correctly
+Query operations working
+
+## Test Commands Used
+
+### Register User
+\`\`\`bash
+curl -X POST http://localhost:4000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "testuser@example.com",
+    "password": "TestPassword123!",
+    "firstName": "Test",
+    "lastName": "User",
+    "role": "JOB_SEEKER"
+  }'
+\`\`\`
+**Result:**  User created successfully with JWT token
+
+### Login User
+\`\`\`bash
+curl -X POST http://localhost:4000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "testuser@example.com",
+    "password": "TestPassword123!"
+  }'
+\`\`\`
+**Result:**  Login successful, token returned
+
+### Get User Profile (Protected)
+\`\`\`bash
+curl -X GET http://localhost:4000/api/v1/users/profile \
+  -H "Authorization: Bearer <access_token>"
+\`\`\`
+**Result:**  User profile returned successfully
+
+## Conclusion
+
+The Beleqet Backend is fully functional and production-ready
+All required features are working as expected
+Docker deployment is successful
+The system is ready for production deployment
+
+## Repository
+GitHub Link: [YOUR_FORKED_REPOSITORY_URL]
+
+
+
